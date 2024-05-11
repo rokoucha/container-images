@@ -1,4 +1,4 @@
-name: vmtoolsd
+name: apcupsd
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
         with:
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          context: ./vmtoolsd
+          context: ./apcupsd
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/rokoucha/vmtoolsd:latest
+          tags: ghcr.io/rokoucha/apcupsd:latest
