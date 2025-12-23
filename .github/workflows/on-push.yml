@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       buildonly: ${{ github.ref != format('refs/heads/{0}', github.event.repository.default_branch) }}
-      changes: ${{ steps.changes.outputs }}
+      changes: ${{ steps.script.outputs.result }}
     steps:
       - uses: actions/checkout@v6
 
@@ -24,9 +24,20 @@ jobs:
             workflows: [.github/workflows/**/*]
             otelcol: [otelcol/**/*]
 
+      - uses: actions/github-script@v8
+        id: script
+        env:
+          changes: ${{ toJSON(steps.changes.outputs) }}
+        with:
+          script: |
+            const { changed_keys = "" } = JSON.parse(process.env.changes)
+            return {
+              otelcol: changed_keys.includes("workflows") || changed_keys.includes("otelcol"),
+            }
+
   build-otelcol:
     needs: [check]
-    if: needs.check.outputs.changes.otelcol_any_changed == 'true' || needs.check.outputs.changes.workflows_any_changed == 'true'
+    if: fromJson(needs.check.outputs.changes).otelcol
     uses: ./.github/workflows/wf-build.yml
     with:
       push: ${{ needs.check.outputs.buildonly == 'false' }}
