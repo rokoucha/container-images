@@ -2,57 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    ":dependencyDashboard"
+    ":dependencyDashboard",
+    "helpers:pinGitHubActionDigests",
+    "customManagers:githubActionsVersions",
+    "customManagers:dockerfileVersions"
   ],
-  "kubernetes": {
-    "managerFilePatterns": [
-      "/applications/.+\\.yaml$/",
-      "/system/.+\\.yaml$/"
+  "ocb": {
+    "fileMatch": [
+      "(^|/)manifest\\.ya?ml$"
     ]
-  },
-  "customManagers": [
-    {
-      "customType": "regex",
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "k0sproject/k0s",
-      "managerFilePatterns": [
-        "/k0sctl.yaml/"
-      ],
-      "matchStrings": [
-        "version: (?<currentValue>.*)"
-      ]
-    },
-    {
-      "customType": "regex",
-      "datasourceTemplate": "github-releases",
-      "managerFilePatterns": [
-        "/kustomization.yaml/"
-      ],
-      "matchStrings": [
-        "https://github.com/(?<depName>.*/.*?)/releases/download/(?<currentValue>.*?)/"
-      ]
-    },
-    {
-      "customType": "regex",
-      "datasourceTemplate": "github-tags",
-      "managerFilePatterns": [
-        "/kustomization.yaml/"
-      ],
-      "matchStrings": [
-        "https://raw.githubusercontent.com/(?<depName>[^/]*/[^/]*)/(?<currentValue>.*?)/"
-      ]
-    }
-  ],
-  "packageRules": [
-    {
-      "groupName": "Mastodon",
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "ghcr.io/mastodon/mastodon",
-        "ghcr.io/mastodon/mastodon-streaming"
-      ]
-    }
-  ]
+  }
 }
