@@ -10,8 +10,8 @@
   "automerge": true,
   "automergeType": "branch",
   "ocb": {
-    "fileMatch": [
-      "(^|/)manifest\\.ya?ml$"
+    "managerFilePatterns": [
+      "/(^|/)manifest\\.ya?ml$/"
     ]
   }
 }
