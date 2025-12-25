@@ -1,5 +1,5 @@
 dist:
-  name: otelcol-materia-mastodon
+  name: otelcol
   description: OpenTelemetry Collector for Mastodon on Materia
   output_path: build
   debug_compilation: false
