@@ -17,6 +17,7 @@ extensions:
 
 processors:
   - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.142.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v0.142.0
 
 connectors:
   - gomod: go.opentelemetry.io/collector/connector/forwardconnector v0.142.0
