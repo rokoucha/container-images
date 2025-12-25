@@ -1,0 +1,19 @@
+name: otelcol build
+
+on:
+  push:
+    paths:
+      - "otelcol/**"
+      - ".github/workflows/build-otelcol.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-otelcol:
+    uses: ./.github/workflows/wf-build.yml
+    with:
+      push: ${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+      target: otelcol
