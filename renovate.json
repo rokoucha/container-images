@@ -9,6 +9,20 @@
   ],
   "automerge": true,
   "automergeType": "branch",
+  "packageRules": [
+    {
+      "groupName": "OpenTelemetry Collector",
+      "matchDatasources": [
+        "go",
+        "docker"
+      ],
+      "matchPackageNames": [
+        "go.opentelemetry.io/collector/{/,}**",
+        "otel/opentelemetry-collector-builder{/,}**",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/{/,}**"
+      ]
+    }
+  ],
   "ocb": {
     "managerFilePatterns": [
       "/(^|/)manifest\\.ya?ml$/"
