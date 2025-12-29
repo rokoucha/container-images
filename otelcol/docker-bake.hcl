@@ -1,8 +1,17 @@
 group "default" {
-  targets = ["materia-gateway", "materia-mastodon"]
+  targets = ["materia-agent", "materia-gateway", "materia-mastodon"]
 }
 
 target "docker-metadata-action" {}
+
+target "materia-agent" {
+  inherits = ["docker-metadata-action"]
+  tags     = make_tags("materia-agent")
+  args = {
+    target = "materia-agent"
+  }
+  platforms = ["linux/amd64"]
+}
 
 target "materia-gateway" {
   inherits = ["docker-metadata-action"]
