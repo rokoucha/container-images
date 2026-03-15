@@ -3,8 +3,9 @@ name: otelcol build
 on:
   push:
     paths:
-      - "otelcol/**"
-      - ".github/workflows/build-otelcol.yml"
+      - otelcol/**
+      - .github/workflows/build-otelcol.yml
+      - .github/workflows/wf-build.yml
   workflow_dispatch:
 
 concurrency:
