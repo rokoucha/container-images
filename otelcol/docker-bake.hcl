@@ -2,6 +2,7 @@ group "default" {
   targets = [
     "materia-agent",
     "materia-clusteragent",
+    "materia-external",
     "materia-gateway",
   ]
 }
@@ -31,6 +32,15 @@ target "materia-gateway" {
   tags     = make_tags("materia-gateway")
   args = {
     target = "materia-gateway"
+  }
+  platforms = ["linux/amd64"]
+}
+
+target "materia-external" {
+  inherits = ["docker-metadata-action"]
+  tags     = make_tags("materia-external")
+  args = {
+    target = "materia-external"
   }
   platforms = ["linux/amd64"]
 }
