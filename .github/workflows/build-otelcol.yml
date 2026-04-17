@@ -13,8 +13,40 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.targets.outputs.value }}
+      timestamp: ${{ steps.ts.outputs.value }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+
+      - name: Get bake targets
+        id: targets
+        run: |
+          targets=$(docker buildx bake \
+            --file otelcol/docker-bake.hcl \
+            --print 2>/dev/null \
+            | jq -c '.group.default.targets')
+          echo "value=$targets" >> $GITHUB_OUTPUT
+
+      - name: Generate timestamp
+        id: ts
+        run: echo "value=$(TZ=Asia/Tokyo date +'%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
+
   build:
+    needs: prepare
+    strategy:
+      matrix:
+        bake_target: ${{ fromJson(needs.prepare.outputs.targets) }}
     uses: ./.github/workflows/wf-build.yml
     with:
       push: ${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
       target: otelcol
+      bake_target: ${{ matrix.bake_target }}
+      timestamp: ${{ needs.prepare.outputs.timestamp }}
+    permissions:
+      contents: read
+      packages: write
