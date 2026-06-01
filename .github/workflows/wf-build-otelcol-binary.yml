@@ -64,9 +64,10 @@ jobs:
           cd ../..
           mkdir -p dist
           cp "otelcol/${BAKE_TARGET}/build/otelcol" "dist/${OUTPUT_NAME}"
+          tar -C dist -czf "dist/${OUTPUT_NAME}.tar.gz" "${OUTPUT_NAME}"
 
       - name: Upload build result
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: otelcol-${{ steps.ts.outputs.value }}-${{ inputs.bake_target }}-linux-amd64
-          path: dist/otelcol-${{ inputs.bake_target }}-linux-amd64
+          name: otelcol-${{ steps.ts.outputs.value }}-${{ inputs.bake_target }}-linux-amd64-tar-gz
+          path: dist/otelcol-${{ inputs.bake_target }}-linux-amd64.tar.gz
