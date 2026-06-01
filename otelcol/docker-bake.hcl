@@ -1,5 +1,6 @@
 group "default" {
   targets = [
+    "chlorine",
     "materia-agent",
     "materia-clusteragent",
     "materia-external",
@@ -8,6 +9,15 @@ group "default" {
 }
 
 target "docker-metadata-action" {}
+
+target "chlorine" {
+  inherits = ["docker-metadata-action"]
+  tags     = make_tags("chlorine")
+  args = {
+    target = "chlorine"
+  }
+  platforms = ["linux/amd64"]
+}
 
 target "materia-agent" {
   inherits = ["docker-metadata-action"]
