@@ -22,7 +22,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
     ocb --config manifest.yaml --ldflags "-s -w"
 
-FROM alpine:3.23 as certificates
+FROM alpine:3.24 as certificates
 
 RUN apk --update add ca-certificates
 
