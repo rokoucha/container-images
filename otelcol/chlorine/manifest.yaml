@@ -5,9 +5,9 @@ dist:
   debug_compilation: false
 
 receivers:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.154.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/journaldreceiver v0.154.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.154.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.155.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/journaldreceiver v0.155.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.155.0
 
 exporters:
   - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.155.0
@@ -15,8 +15,8 @@ exporters:
 processors:
   - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.155.0
   - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.155.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.154.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.154.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.155.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.155.0
 
 providers:
   - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.61.0
