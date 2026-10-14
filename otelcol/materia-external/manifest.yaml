@@ -4,6 +4,10 @@ dist:
   output_path: build
   debug_compilation: false
 
+replaces:
+  # Mackerel's older root module overlaps with the extracted internal/statusutil module.
+  - go.opentelemetry.io/collector => go.opentelemetry.io/collector v0.163.0
+
 receivers:
   - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.163.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.163.0
