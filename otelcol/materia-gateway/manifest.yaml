@@ -4,34 +4,38 @@ dist:
   output_path: build
   debug_compilation: false
 
+replaces:
+  # Mackerel's older root module overlaps with the extracted internal/statusutil module.
+  - go.opentelemetry.io/collector => go.opentelemetry.io/collector v0.163.0
+
 receivers:
-  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.162.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.162.0
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.163.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.163.0
 
 exporters:
-  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.162.0
-  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.162.0
-  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.162.0
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.163.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.163.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.163.0
   - gomod: github.com/mackerelio/opentelemetry-collector-mackerel/exporter/mackerelotlpexporter v0.15.2
 
 extensions:
-  - gomod: go.opentelemetry.io/collector/extension/zpagesextension v0.162.0
+  - gomod: go.opentelemetry.io/collector/extension/zpagesextension v0.163.0
 
 processors:
-  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.162.0
-  - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.162.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v1.1.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v0.162.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.162.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.162.0
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.163.0
+  - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.163.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v1.2.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v0.163.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.163.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.163.0
 
 connectors:
-  - gomod: go.opentelemetry.io/collector/connector/forwardconnector v0.162.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v0.162.0
+  - gomod: go.opentelemetry.io/collector/connector/forwardconnector v0.163.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v0.163.0
 
 providers:
-  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.68.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.68.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.68.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.68.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.68.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.69.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.69.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.69.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.69.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.69.0
