@@ -2,7 +2,7 @@
 
 ARG target
 
-FROM --platform=$BUILDPLATFORM ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-builder:0.163.2 AS ocb
+FROM --platform=$BUILDPLATFORM ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-builder:0.164.0 AS ocb
 
 FROM --platform=$BUILDPLATFORM golang:1.27 AS builder
 
